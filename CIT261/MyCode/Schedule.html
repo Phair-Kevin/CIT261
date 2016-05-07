@@ -13,8 +13,17 @@ and open the template in the editor.
     <body>
         <div>
             <!--<p id="show_schedule"></p>-->
+            <select id="ppl">
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+            </select>How many people events would you like to see on the schedule?<br><button id="pplButton"name="Show Schedule Events!" onclick="loopArray()">Show Scheduled Events!</button>
             <p id="show_schedule"></p>
             <script>
+                function loopArray() {
                 var schedule = '{ "lessonsched" : [' +
                         '{"subject" : "The software development process and some standard methodologies", "student" : "Katy"},' +
                         '{"subject" : "Creative, pleasant, mobile user interface creation", "student" : "Kevin"},' +
@@ -26,20 +35,22 @@ and open the template in the editor.
                         '{"subject" : "AJAX interactions with remote services", "student" : "Silvere"},' +
                         '{"subject" : "JSON data serialization", "student": "James"} ] }';
                 var obj = JSON.parse(schedule);
-                document.getElementById("show_schedule").innerHTML = obj.lessonsched[4]["student"] + ": " +obj.lessonsched[2]["subject"];
-                //function loopArray(array) {
-                //    var output = "";
-                //    var i;
-                //    for (i = 0; i < array.length; i++) {
-                //        output +=  array[i].subject ;
-                 //   }                   
-                //    return output;
-                    //document.getElementById("show_schedule").innerHTML = out;
-                //}
+                //document.getElementById("show_schedule").innerHTML = obj.lessonsched[4]["student"] + ": " +obj.lessonsched[2]["subject"];
+                var input = document.getElementById("ppl").value;
                 
+                    var output = "";
+                    var i;
+                    for (i = 0; i < input; i++) {
+                        output +=  i+1 + ". ";
+                        output += obj.lessonsched[i]["student"] + ": " +obj.lessonsched[i]["subject"]+"<br>";
+                   }                   
+                    //return output;
+                    document.getElementById("show_schedule").innerHTML = output;
+                }
+            
                 //var output = loopArray(schedule);
                 
-                //document.getElementById("show_schedule").innerHTML = output;
+                document.getElementById("show_schedule").innerHTML = output;
             </script>
         </div>
     </body>
